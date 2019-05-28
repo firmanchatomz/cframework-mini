@@ -17,10 +17,9 @@ use app\Core\ModelClass;
 
 class Home extends ModelClass
 {
-	public function lihatbuah($value='')
+	public function FunctionName($value='')
 	{
-		$this->_db->where("id_admin = '2'");
-		$this->_db->table('buah');
-		return $this->_db->fetch();
+		# code...
 	}
+	
 }
