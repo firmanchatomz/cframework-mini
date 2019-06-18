@@ -19,97 +19,78 @@ use app\Core\ModelClass;
 
 class Guide extends ModelClass
 {
-	private $tabel  = 'guide';
+	private $tabel  = ''; //set ypur table name in here
 
 	// create --------------------------------------------------------------------------------------------------------
 
 	//model untuk menambah data baru
-	public function tambahUser()
+	public function tambahtable()
 	{
-		$d['nama']		= $_POST['nama'];
-		$d['alamat']	= $_POST['alamat'];
-		$d['hp']		= $_POST['hp'];
-
-		return $this->_db->insert($this->tabel,$d);
+		$d['field1']		= $_POST['field2'];
+		$d['field2']		= $_POST['field2'];
+		$d['field3']		= $_POST['field3'];
+		return $this->_db->insert($d);
 	}
 
 	//read -----------------------------------------------------------------------------------------------------------
 	
 	//model untuk melihat seluruh data dalam tabel
-	public function listUser()
+	public function listtable()
 	{
-		return $this->_db->fetch($this->tabel);
+		return $this->_db->fetch();
 	}
 
 	//model untuk meilhat salah satu data dalam tabel
-	public function listUserid($id_user)
+	public function listtableid($id)
 	{
-		return $this->_db->fetch($this->tabel,"id_user = '$id_user'");
+		return $this->_db->fetchid($id);
 	}
 
 	//model untuk melihat salah satu data menurut file tertentu
-	public function listusersetnama($nama)
+	public function listtablesetfield($field)
 	{
-		return $this->_db->fetch($this->tabel,"nama = '$nama' OR nama LIKE '%$nama%'");
+		$this->_db->where("field = '$field' OR field LIKE '%$field%'");
+		return $this->_db->fetch();
 	}
 
 	//update ---------------------------------------------------------------------------------------------------------
 	
 	//model untuk mengubah salah satu data
-	public function ubahuserid($id_user)
+	public function ubahtableid($id)
 	{
-		$d['nama']		= $_POST['nama'];
-		$d['alamat']	= $_POST['alamat'];
-		$d['hp']		= $_POST['hp'];
-		return $this->_db->update($this->tabel,$d,"id_user='$id_user'");
+		$d['field1']		= $_POST['field2'];
+		$d['field2']		= $_POST['field2'];
+		$d['field3']		= $_POST['field3'];
+		return $this->_db->update($d,"id='$id'");
 	}
 
 	//model untuk mengubah seluruh data berdasarkan field tertentu
-	public function ubahusersetnama($nama)
-	{
-		$d['nama']		= $_POST['nama'];
-		return $this->_db->update($this->tabel,$d,"id_user='$id_user'");
-	}
+	public function ubahtablesetfield($id){
 
-	//model unutk mengubah salah satu data berdasarkan field tertentu
-	public function ubahusersetnamaid($nama,$id_user=null)
-	{
-		$d['nama']		= $_POST['nama'];
-		return $this->_db->update($this->tabel,$d,"id_user='$id_user'");
+			$d['field1']		= $_POST['field1'];
+		return $this->_db->update($d,"id='$id'");
 	}
 
 	//delete ---------------------------------------------------------------------------------------------------------
 	
 	//model untuk menghapus seluruh data dalam tabel
-	public function hapususer()
+	public function hapustable()
 	{
 		return $this->_db->delete($this->tabel);
 	}
 
 	//model untuk menghapus salah satu data dalam tabel
-	public function hapususerid($id_user)
+	public function hapustableid($id)
 	{
-		return $this->_db->delete($this->tabel,"id_user='$id_user'");
-	}
-
-	//model untuk menghapus salah satu data berdasarkan field tertentu
-	public function hapususersetnama($nama)
-	{
-		return $this->_db->fetch($this->tabel,"nama='$nama'");
+		return $this->_db->delete("id='$id'");
 	}
 
 	//jumdata----------------------------------------------------------------------------------------------------------
 
 	//model untuk mengetahui jumlah data dalam tabel
-	public function jumlahuser()
+	public function jumlahtable()
 	{
-		return $this->_db->jumdata($this->tabel);
-	}
-
-	//model untuk mengetahui jumlah data berdasarkan field tertentu
-	public function jumlahusersetnama($nama)
-	{
-		return $this->_db->jumdata($this->tabel,"nama='$nama'");
+		return $this->_db->jumdata();
 	}
 
 }
