@@ -19,7 +19,17 @@ use app\Core\ModelClass;
 
 class Guide extends ModelClass
 {
-	private $tabel  = ''; //set ypur table name in here
+	private $table  = ''; //set ypur table name in here
+
+	function __construct()
+	{
+		// call __construct modelclass
+		// not delete (!important)
+		parent::__construct();
+		// set table name default for all method
+		// table name set your model
+		$this->_db->table($this->table);
+	}
 
 	// create --------------------------------------------------------------------------------------------------------
 
