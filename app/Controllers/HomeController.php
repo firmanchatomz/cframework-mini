@@ -24,7 +24,6 @@ class HomeController extends Controller
 		
 	  // method default
     // all class use methos index for method default
-    // framework chatomz
     public function index()
     {
       $this->view('welcome');
