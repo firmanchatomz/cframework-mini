@@ -34,11 +34,11 @@ for ($i=2; $i <= count($Helper)-1; $i++) {
 	 require_once $file;
 }
 
-// ---------------------------------------------------------------------------------------------------------------
-
+// CORE
+// #################################################################
 spl_autoload_register(function( $class ){
-	$class = explode('\\', $class);
-	$class = end($class);
-	require_once 'Core/' . $class . '.php';
+	$class = ltrim($class,'app\\');
+	require_once $class . '.php';
 });
+// #################################################################
 

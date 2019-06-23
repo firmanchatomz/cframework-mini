@@ -19,24 +19,20 @@ use PDO;
 
 class Database
 {
-	private $serv 	= DB_SERV;
-	private $host 	= DB_HOST;
-	private $user 	= DB_USER;
-	private $pass 	= DB_PASS;
-	private $db_name= DB_NAME;
 	
 	private static $_instance = null;
 	private $dbh;
 	private $stmt;
 	private $set 		= null;
 	private $where 	= null;
-	private $table	= null; 
+	private $table	= null;
 	private $opsi 	= null;
 	private $part 	= null;
 	
 	function __construct()
 	{
-		$dsn = $this->serv .'::host=' . $this->host . ';dbname=' . $this->db_name;
+		global $Database;
+		$dsn = $Database['DB_SERV'] .'::host=' . $Database['DB_HOST'] . ';dbname=' . $Database['DB_NAME'];
 
 		$option = [
 			PDO::ATTR_PERSISTENT => true,
@@ -44,7 +40,7 @@ class Database
 		];
 
 		try {
-			$this->dbh = new PDO($dsn, $this->user, $this->pass, $option);
+			$this->dbh = new PDO($dsn, $Database['DB_USER'], $Database['DB_PASS'], $option);
 		} catch (PDOException $e) {
 			die($e->getMessage());
 		}
@@ -95,12 +91,22 @@ class Database
 		return $this->resultset($set);
 	}
 
+	public function querySql($query, $set=null)
+	{
+		return $this->stmt = $this->dbh->query($query);
+	}
+
 	// ------------------------------------------------------------------
 
 	// SETTER -----------------------------------------------------------
 
 	public function resultset($set=null)
 	{
+		// menghapus nilai option sebelumnya
+		$this->where 		= null;
+		$this->opsi 		= null;
+		$this->part 		= null;
+		
 		switch ($set) {
 			case 'assoc':
 				return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -119,10 +125,6 @@ class Database
 
 	public function table($table1, $table2=null)
 	{
-		
-		$this->where 	= null;
-		$this->opsi 	= null;
-		$this->part 	= null;
 		if (is_null($table2)) {
 			$this->table 	= $table1;
 		} else {
@@ -142,7 +144,7 @@ class Database
 
 	public function opsi($opsi)
 	{
-		$this->opsi = $opsi;
+		$this->opsi = " ".$opsi;
 	}
 
 	public function show($sql, $set)
@@ -228,13 +230,57 @@ class Database
 				$row .= $key . ",";
 				$value .= ":".$key . ",";
 			}
-			$sql .= "(".rtrim($row, ",").")";
+			$sql .= " (".rtrim($row, ",").")";
 			$sql .= " VALUES (".rtrim($value, ",").")";
 
 			$this->stmt = $this->dbh->prepare($sql);
 			
 			foreach ($rows as $key => $nilai) {
 				$this->bind(':'.$key,$nilai);
+			}
+			$this->stmt->execute();
+			return true;
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();	
+			return false;
+		}
+	}
+
+	public function multi_insert($rows)
+	{
+		if (!is_array($rows)) {
+			$this->warning('Parameter insert hanya boleh berisi array 2 dimensi','$d[\'nama_field\'] = isi field');
+		}
+		try
+		{
+			$sql 	= "INSERT INTO " . $this->getTable();
+			$row 	= null;
+			foreach (end($rows) as $key => $nilai) {
+				$row .= $key . ",";
+			}
+			$sql .= " (".rtrim($row, ",").") VALUES ";
+			$i 		= 1;
+			foreach ($rows as $row) {
+				$value 	= null;
+				foreach ($row as $key => $nilai) {
+					$value .= ":".$key.$i . ",";
+				}
+				$i++;
+				$sql .= "(".rtrim($value, ",")."),";
+			}
+
+			$sql = rtrim($sql,',');
+
+
+			$this->stmt = $this->dbh->prepare($sql);
+			$i = 1;
+			foreach ($rows as $row) {
+				foreach ($row as $key => $nilai) {
+					$this->bind(":".$key.$i, $nilai);
+				}
+				$i++;
 			}
 			$this->stmt->execute();
 			return true;
@@ -253,6 +299,7 @@ class Database
 			$this->warning('fungsi fetch hanya diperbolehkan 1 tabel','$this->table(\'tabel-1\')');
 		}
 		$sql = "SELECT " . $this->getPart() . " FROM " . $this->getTable();
+		
 		return $this->show($sql, $set);
 	}
 
@@ -277,24 +324,29 @@ class Database
 	}
 
 	// Update
-	public function update($rows,$id)
+	public function update($rows,$id=null)
 	{
 		if (!is_array($rows)) {
 			$this->warning('Parameter update hanya boleh berisi array 2 dimensi','$d[\'nama_field\'] = isi field');
 		}
+		$field = $this->getPri($this->getTable());
 
 		try
 		{
-			$field = $this->getPri($this->getTable());
 			$sql 	= "UPDATE " . $this->getTable() . " SET ";
 			$row 	= null;
 			foreach ($rows as $key => $nilai) {
 				$row .= $key . "=:" . $key . ",";
 			}
-			$sql .= rtrim($row, ",") . " WHERE " . $field . "=:id" ;
-			$this->stmt = $this->dbh->prepare($sql);
+			if (is_null($id)) {
+				$sql .= rtrim($row, ",") . $this->getWhere();
+			} else {
+				$sql .= rtrim($row, ",") . " WHERE " . $field . "=:id" ;
+			}
 			
-			$this->bind(":id",$id);
+			$this->stmt = $this->dbh->prepare($sql);
+			if (!is_null($id))
+				$this->bind(":id",$id);
 			foreach ($rows as $key => $nilai) {
 				$this->bind(':'.$key,$nilai);
 			}
@@ -312,12 +364,12 @@ class Database
 	public function delete($value=null)
 	{
 		$sql = "DELETE FROM " . $this->getTable();
-		if (!is_null($value)) {
-			$field = $this->getPri($this->getTable());
-			if (is_null($this->where)) {
-				$sql .= " WHERE ". $field . "= ?";
-			} else {
-				$sql .= $this->getWhere() . "= ?";
+		if (!is_null($this->where)) {
+				$sql .= $this->getWhere();
+		} else {
+			if (!is_null($value)) {
+				$field = $this->getPri($this->getTable());
+					$sql .= " WHERE ". $field . "= ?";
 			}
 		}
 		$stmt = $this->dbh->prepare($sql);

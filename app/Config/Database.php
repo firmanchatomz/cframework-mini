@@ -25,11 +25,11 @@
 * ['DB_NAME'] = nama database
 */
 
-$Database['db'] = [	'DB_SERV' => '',
-										'DB_HOST' => '',
-										'DB_USER' => '',
-										'DB_PASS' => '',
-										'DB_NAME' => ''];
+$Database = [ 	'DB_SERV' => 'mysql',
+								'DB_HOST' => 'localhost',
+								'DB_USER' => 'root',
+								'DB_PASS' => '',
+								'DB_NAME' => 'tutorial'];
 
 ##############################################################
 			

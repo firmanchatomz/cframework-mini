@@ -22,20 +22,14 @@ class HomeController extends Controller
 
 {
 		
-	 	function __construct()
-		{
-			parent::__construct();
-			// kode yang akan dijalankan terus ketika controller dipanggil
-		}
+ 	function __construct()
+	{
+		parent::__construct();
+		// kode yang akan dijalankan terus ketika controller dipanggil
+	}
 
     public function index()
     {
       $this->view('welcome');
-    }
-
-    public function admin($value='')
-    {
-    	$data['nama']	= 'firman setiawan';
-    	$this->adminpage('isi',$data);
     }
 }

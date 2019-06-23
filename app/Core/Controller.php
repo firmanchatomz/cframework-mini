@@ -13,8 +13,6 @@
 
 namespace app\Core;
 
-use app\Models;
-
 // -------------------------------------------------------------------------------------------------
 
 class Controller
@@ -56,7 +54,7 @@ class Controller
 	public function model($model=null)
 	{
 		require_once '../app/Models/'.ucfirst(filemodel($model)).'_Model.php';
-		$model 	= 'Models\\' . $model;
+		$model 	= 'app\Models\\' . filemodel($model);
 		return new $model();
 	}
 
