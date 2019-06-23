@@ -21,8 +21,8 @@
 * index footer untuk menginisialisasi footer theme
 * isi nilai dengan link lokasi templat yang berada pada folder view
 */
-$Template['administrator'] = [	'header' => '',
-																'footer' => ''];
+$Template['admin'] = [	'header' => '',
+												'footer' => ''];
 ##############################################################
 
 ##############################################################

@@ -15,16 +15,11 @@ namespace app\Core;
 // -----------------------------------------------------------------------------------------------------------------------------=
 class Route
 {
-	private $session 		= sessionstatus;
 	protected $controller 	= 'HomeController';
 	protected $method 		= 'index';
 	protected $params 		= [];
 	function __construct()
 	{
-		if ($this->session == TRUE) {
-			session_start();
-		}
-
 		$url 	= $this->parseURL();
 		
 		// controller

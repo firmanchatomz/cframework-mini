@@ -13,32 +13,24 @@
 
 namespace app\Core;
 
-use app\Core\ViewClass;
+use app\Models;
 
 // -------------------------------------------------------------------------------------------------
 
 class Controller
 {
 	private $link_error = '../app/Repository/error/404.php';
-	private $sesi 			= session;
-	protected $header 	= null;
-	protected $session 	= null;
 	protected $data 		= null;
-	protected $footer 	= null;
-
-	// property template
-	private $admin 			= administrator;
-	private $home 			= homepage;
 
 	function __construct()
 	{
-		$view = new ViewClass();
-	}
 
+	}
 
 	//Fungsi untuk memanggil halaman page
 	public function view($view, $data= [])
 	{
+		extract($data);
 		$chart 	= self::library('chart');
 		if ( file_exists('../app/Views/'.$view.'.php') ) {
 			require_once '../app/Views/'.$view.'.php';
@@ -61,10 +53,8 @@ class Controller
 	//Fungsi untuk memanggil model
 	public function model($model=null)
 	{
-		if (empty($model))
-			$model = 'fc';
-		require_once '../app/Models/'.ucfirst($model).'_Model.php';
-		$model 	= 'app\Models\\' . $model;
+		require_once '../app/Models/'.ucfirst(filemodel($model)).'_Model.php';
+		$model 	= 'Models\\' . $model;
 		return new $model();
 	}
 
@@ -137,7 +127,7 @@ class Controller
 	}
 
 	// Fungsi mengambil data yang disetting untuk tempate admin dan homepage
-	public function GetData()
+	public function getData()
 	{
 		return $this->data;
 	}
@@ -168,41 +158,34 @@ class Controller
 	// Fungsi pemanggilan header dan footer dari template Admin
 	public function adminPage($view, $data=[])
 	{
-		if ($this->admin != FALSE) {
-			$dir 	= '../app/Views/Administrator';
-			if (file_exists($dir . '/header_' . $this->admin . '.php') AND file_exists($dir . '/footer_' . $this->admin . '.php')) {
+		$template = [temp_header_admin(),temp_footer_admin()];
+		$this->template($template, $view. $data);
+	}
+
+	// Fungsi pemanggilan header dan footer dari template Admin
+	public function homePage($view, $data=[])
+	{
+		$template = [temp_header_home(),temp_footer_home()];
+		$this->template($template, $view. $data);
+	}
+
+	public function template($template,$view,$data=[])
+	{		
+		if (!is_null($template[0]) && !is_null($template[1])) {
+			$dir 	= '../app/Views/';
+			if (file_exists($dir . $template[0] . '.php') AND file_exists($dir . $template[1] . '.php')) {
 			 	if (file_exists('../app/Views/' . $view . '.php')) {
-			 		self::view('Administrator/header_' . $this->admin, self::getdata());
+			 		self::view($template[0], self::getdata());
 					self::view($view, $data);
-					self::view('Administrator/footer_' . $this->admin, self::getdata());
+					self::view($template[1], self::getdata());
 			 	}else{
 			 		require_once $this->link_error;
 			 	}
 			} else {
-				warning('File Template tidak ada atau tidak sesuai','directory Administrator/file tamplate');
+				warning('File Template tidak ada atau tidak sesuai','directory tamplate');
 			}
 		} else 
 			warning('Tema Admin tidak di konfigurasi');
-	}
-
-		// Fungsi pemanggilan header dan footer dari template Admin
-	public function homePage($view, $data=[])
-	{
-		if ($this->home != FALSE) {
-			$dir 	= '../app/Views/Homepage';
-			if (file_exists($dir . '/header_' . $this->home . '.php') AND file_exists($dir . '/footer_' . $this->home . '.php')) {
-			 	if (file_exists('../app/Views/' . $view . '.php')) {
-			 		self::view('Homepage/header_' . $this->home, self::getdata());
-					self::view($view, $data);
-					self::view('Homepage/footer_' . $this->home, self::getdata());
-			 	}else{
-			 		require_once $this->link_error;
-			 	}
-			} else{
-				warning('File Template tidak ada atau tidak sesuai','directory Homepage/file tamplate');
-			} 
-		} else 
-			warning('Tema Homepage tidak di konfigurasi');
 	}
 
 	//Fungsi untuk menampilkan jendela Pop Up
@@ -212,18 +195,5 @@ class Controller
 	    		window.location.href='".base_url().$link."';
 	    		</script>";
 	    echo $popup;
-	}
-
-	//Fungsi untuk mengecek status data CUD
-	public function checkcud($cud,$check,$link)
-	{
-		$info 	= ['create' => 'di Simpan','update' => 'di Perbaharui', 'delete' => 'di Hapus'];
-		if (array_key_exists($cud, $info))
-			$status 	= $info[$cud];	
-		else warning('Input CUD yang sesuai');
-		if ($check)
-			echo self::popup("Data Berhasil $status",$link);
-		else
-			echo self::popup("Data Gagal $status",$link);
 	}
 }

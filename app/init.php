@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 /**
  * This file is part of the Chatomz PHP Framework package.
