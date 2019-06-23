@@ -20,13 +20,13 @@
 		<div class="col">
 			<div class="card">
 				<div class="card-header bg-info text-light">
-					<strong>Framework Chatomz Beta 1.8.8 (mini version)</strong>
+					<strong>Chatomz Framework mini 2.0 (mini version)</strong>
 				</div>
 				<div class="card-body">
 					<div class="media">
 						<img width="150" src=<?= base_url('assets/img/logo.png')?> >
 						<div class="media-body p-2">
-							<h3>SELAMAT DATANG DI FRAMEWORK CHATOMZ</h3><hr>
+							<h3>SELAMAT DATANG DI CHATOMZ FRAMEWORK</h3><hr>
 							<p class="text-secondary text-justify">Framework ini merupakan framework php dengan sistem MVC yang mudah untuk dipahami. framework chatomz mini adalah turunan dari framework utama yang sifatnya <i>no-open source </i></p>
 						</div>
 					</div>
