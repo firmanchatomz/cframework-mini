@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * This file is part of the Chatomz PHP Framework package.
@@ -11,15 +11,9 @@
  *
  */
 
+#############################################################
+## HELPER SYSTEM
 
-// -------------------------------------------------------------------------------
-
-## AUTOLOAD SYSTEM
-## THIS FUNTION for all class system
-## this is funtion system
-## !important for not modified
-
-// ---------------------------- WARNING -----------------------------------------
 function warning($teks, $info=null) {
 	if (!is_null($info))
 		$info = ' - <i>(' . $info . ')</i>';
@@ -41,5 +35,3 @@ function base_url($link= null) {
 	
 	return $Url['BASE_URL'] . $link;
 }
-
-// -----------------------------------------------------------------------------

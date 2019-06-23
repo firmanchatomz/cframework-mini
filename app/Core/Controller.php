@@ -19,7 +19,7 @@ use app\Core\ViewClass;
 
 class Controller
 {
-	private $link_error = '../app/Theme/error/404.php';
+	private $link_error = '../app/Repository/error/404.php';
 	private $sesi 			= session;
 	protected $header 	= null;
 	protected $session 	= null;
