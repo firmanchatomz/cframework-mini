@@ -8,10 +8,27 @@
  * @author 		Firman Setiawan
  * @copyright	Copyright (c) Firman Setiawan
  *
- * ---------------------------------------------------------------------------------------------------------------------------- */
+ */
 
-define('DB_SERV', '' );
-define('DB_HOST', '' );
-define('DB_USER', '' );
-define('DB_PASS', '' );
-define('DB_NAME', '' );
+
+##############################################################
+## DATABASE
+
+/**
+* Konfigurasi database
+* isi index sesuai dengan database yang digunakan
+* ['DB_SERV'] = sistem database yang digunakan ('mysql','progres sql','dll')
+* ['DB_HOST'] = hostname yang digunakan ('localhost', dll)
+* ['DB_USER']	= user database (default root)
+* ['DB_PASS'] = password yang digunakan
+* ['DB_NAME'] = nama database
+*/
+
+$Database['db'] = [	'DB_SERV' => '',
+										'DB_HOST' => '',
+										'DB_USER' => '',
+										'DB_PASS' => '',
+										'DB_NAME' => ''];
+
+##############################################################
+			

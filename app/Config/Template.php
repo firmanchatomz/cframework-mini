@@ -7,53 +7,33 @@
  *
  * @author         Firman Setiawan
  * @copyright      Copyright (c) Firman Setiawan
- *
- * ---------------------------------------------------------------------------------------------------------------
  */
 
-// ------------------------------------- ADMINISTRATOR ---------------------------------------
+##############################################################
+## ADMINISTRATOR
 /**
 * Template Administrator || HALAMAN ADMIN
-* Aktifkan bila ingin menggunakan Template Administrator
-* method adminpage akan aktif
-*/
-
-/**
 * konfigurasi theme admin
-* Halaman admin akan aktif bila Template Admin Aktif
-* Halaman Default akan AKTIF
-* Ubah halaman dengan tema yang ada
-* Data Thema : Default, Darkgreen
+* Ubah halaman dengan tema yang digunakan
+* index header untuk menginisialisasi header theme
+* index footer untuk menginisialisasi footer theme
+* isi nilai dengan link lokasi templat yang berada pada folder view
 */
-define('administrator', FALSE ); // FALSE | darkgreen
-// -------------------------------------------------------------------------------------------
+$Template['administrator'] = [	'header' => '',
+																'footer' => ''] );
+##############################################################
 
-// ------------------------------------- HOMEPAGE --------------------------------------------
-
+##############################################################
+## HOMEPAGE
 /**
-* Template HomePage || HALAMAN USER 
-* Aktifkan bila ingin menggunakan Template Administrator
-* method homepage akan AKTIF
+* Template Homepage || HALAMAN USER GENERAL
+* konfigurasi homepage
+* Ubah halaman dengan tema yang digunakan
+* index header untuk menginisialisasi header homapage
+* index footer untuk menginisialisasi footer homepage
+* isi nilai dengan link lokasi templat yang berada pada folder view
 */
 
-/**
-* konfigurasi theme login
-* Halaman Homepage akan aktif bila Template Homepage Aktif
-* Halaman Default akan AKTIF
-* Ubah halaman dengan tema yang ada
-* Data Thema : Default, panel
-*/
-
-define('homepage', FALSE ); // FALSE | Default
-// --------------------------------------------------------------------------------------------
-
-// ---------------------------------- LOGIN --------------------------------------------------
-/**
-* Template Login || HALAMAN LOGIN 
-* Aktifkan bila ingin menggunakan Template lOGIN
-* FILE login akan tersimpan di folder home
-* Data Theme : default, modern
-*/
-define('login', FALSE ); // default || modern
-
+$Template['homepage'] = [	'header' => '',
+													'footer' => ''] );
 // --------------------------------------------------------------------------------------------

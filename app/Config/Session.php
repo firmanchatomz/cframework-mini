@@ -11,17 +11,4 @@
  * ---------------------------------------------------------------------------------------------------------------
  */
 
-/*
-* STATUS SESSION
-* default AKTIF
-*/
-define('sessionstatus', TRUE); // TRUE || FALSE
-
-
-/**
-
-* SESSION penyimpanan variabel selama browser berjalan
-* Jika Web terdiri dari 1 session, bisa menggunakan fitur ini
-* SetSession tidak akan digunakan jika menentukan session disini
-*/
-define('session', FALSE); // FALSE | nama session
+// maintenance
