@@ -8,9 +8,9 @@
 	<title>Welcome to Framework Chatomz</title>
 
 	<!-- link css style -->
-	<link rel="stylesheet" type="text/css" href=<?= base_url('bootstrap4.1/css/bootstrap.min.css');?>>
+	<link rel="stylesheet" type="text/css" href=<?= base_url('vendor/bootstrap/css/bootstrap.min.css');?>>
 	<link rel="stylesheet" type="text/css" href=<?= base_url('css/chatomz.css');?>>
-	<link rel="stylesheet" type="text/css" href=<?= base_url('font-awesome5/css/all.min.css')?>>
+	<link rel="stylesheet" type="text/css" href=<?= base_url('vendor/font-awesome/css/all.min.css')?>>
 	<link rel="shortcut icon" href=<?= base_url('assets/img/fc.ico');?>>
 </head>
 <body>
