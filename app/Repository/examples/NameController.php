@@ -24,11 +24,11 @@ use app\Core\Controller; // alias namespace
 class NameController extends Controller
 
 {
-		function __construct()
-		{
-			parent::__construct();
-			// kode yang akan dijalankan terus ketika controller dipanggil
-		}
+	function __construct()
+	{
+		parent::__construct();
+		// kode yang akan dijalankan terus ketika controller dipanggil
+	}
 	  
 	  // method default dan harus ada di setiap controller
     public function index()

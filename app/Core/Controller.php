@@ -30,7 +30,9 @@ class Controller
 	//Fungsi untuk memanggil halaman page
 	public function view($view, $data= [])
 	{
-		extract($data);
+		if (!is_null($data))
+			extract($data);
+		
 		$chart 	= self::library('chart');
 		if ( file_exists('../app/Views/'.$view.'.php') ) {
 			require_once '../app/Views/'.$view.'.php';
@@ -159,18 +161,18 @@ class Controller
 	public function adminPage($view, $data=[])
 	{
 		$template = [temp_header_admin(),temp_footer_admin()];
-		$this->template($template, $view. $data);
+		$this->template($template, $view, $data);
 	}
 
 	// Fungsi pemanggilan header dan footer dari template Admin
 	public function homePage($view, $data=[])
 	{
 		$template = [temp_header_home(),temp_footer_home()];
-		$this->template($template, $view. $data);
+		$this->template($template, $view, $data);
 	}
 
 	public function template($template,$view,$data=[])
-	{		
+	{	
 		if (!is_null($template[0]) && !is_null($template[1])) {
 			$dir 	= '../app/Views/';
 			if (file_exists($dir . $template[0] . '.php') AND file_exists($dir . $template[1] . '.php')) {
