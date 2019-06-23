@@ -4,15 +4,15 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/css/login_modern.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/css/login_modern.css">
 
     <title>set your title in here</title>
   </head>
   <!-- setting backgroud disini -->
-  <body style="background: url('<?= BASE_URL ?>/assets/img/bg_login1.jpg');">
+  <body style="background: url('<?= base_url() ?>/assets/img/bg_login1.jpg');">
     <div class="loginbox">
       <!-- setting logo yang akan ditampilkan -->
-      <img src="<?= BASE_URL ?> /assets/img/logo.png" class="avatar" alt="your logo">
+      <img src="<?= base_url() ?> /assets/img/logo.png" class="avatar" alt="your logo">
 
       <!-- setting nama app atau informasi lainnya -->
       <h1>name your app</h1>

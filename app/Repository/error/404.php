@@ -34,7 +34,7 @@
 <div id=error>
 	<span class="judul">404</span>
 	<h3>Ooops, Halaman tidak tersedia</h3>
-	<h5>Anda bisa Akses Home Page Website ini <a href="<?= BASE_URL ?>">klik Disini!</a></h5>
+	<h5>Anda bisa Akses Home Page Website ini <a href="<?= base_url() ?>">klik Disini!</a></h5>
 </div>
 </body>
 </html>
