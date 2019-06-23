@@ -35,4 +35,9 @@ class NameController extends Controller
     {
      	// tulis kode disini
     }
+
+    public function FunctionName($value='')
+    {
+    	# code...
+    }
 }
