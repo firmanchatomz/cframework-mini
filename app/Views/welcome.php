@@ -8,7 +8,7 @@
 	<title>Welcome to Framework Chatomz</title>
 
 	<!-- link css style -->
-	<link rel="stylesheet" type="text/css" href=<?= base_url('bootstrap4.1/css/bootstrap.min.css');?>
+	<link rel="stylesheet" type="text/css" href=<?= base_url('bootstrap4.1/css/bootstrap.min.css');?>>
 	<link rel="stylesheet" type="text/css" href=<?= base_url('css/chatomz.css');?>>
 	<link rel="stylesheet" type="text/css" href=<?= base_url('font-awesome5/css/all.min.css')?>>
 	<link rel="shortcut icon" href=<?= base_url('assets/img/fc.ico');?>>
@@ -20,14 +20,14 @@
 		<div class="col">
 			<div class="card">
 				<div class="card-header bg-info text-light">
-					<strong>Framework Chatomz Beta 1.8.8 (demo version)</strong>
+					<strong>Framework Chatomz Beta 1.8.8 (mini version)</strong>
 				</div>
 				<div class="card-body">
 					<div class="media">
 						<img width="150" src=<?= base_url('assets/img/logo.png')?> >
 						<div class="media-body p-2">
-							<h3>SELAMAT DATANG DI FRAMEWORK PHP CHATOMZ</h3><hr>
-							<p class="text-secondary text-justify">Framework ini masih dalam tahap pengembangan, meskipun versi Beta Version. Frawework ini sudah support untuk project skala kecil dan menengah, Kemudahan dalam penggunaan framework ini menjadi daya tarik develover pemula untuk membuat sebuah website</p>
+							<h3>SELAMAT DATANG DI FRAMEWORK CHATOMZ</h3><hr>
+							<p class="text-secondary text-justify">Framework ini merupakan framework php dengan sistem MVC yang mudah untuk dipahami. framework chatomz mini adalah turunan dari framework utama yang sifatnya <i>no-open source </i></p>
 						</div>
 					</div>
 
