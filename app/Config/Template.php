@@ -1,12 +1,14 @@
 <?php
+
 /**
- '' This file is part of the Chatomz PHP Framework package.
+ * This file is part of the Chatomz PHP Framework package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author         Firman Setiawan
- * @copyright      Copyright (c) Firman Setiawan
+ * @author 		Firman Setiawan
+ * @copyright	Copyright (c) Firman Setiawan
+ *
  */
 
 ##############################################################
@@ -20,7 +22,7 @@
 * isi nilai dengan link lokasi templat yang berada pada folder view
 */
 $Template['administrator'] = [	'header' => '',
-																'footer' => ''] );
+																'footer' => ''];
 ##############################################################
 
 ##############################################################
@@ -35,5 +37,5 @@ $Template['administrator'] = [	'header' => '',
 */
 
 $Template['homepage'] = [	'header' => '',
-													'footer' => ''] );
+													'footer' => ''];
 // --------------------------------------------------------------------------------------------

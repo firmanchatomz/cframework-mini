@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Chatomz PHP Framework package.
  *
@@ -8,6 +9,7 @@
  * @author 		Firman Setiawan
  * @copyright	Copyright (c) Firman Setiawan
  *
- * ---------------------------------------------------------------------------------------------------------------------------- */
+ */
 
-// maintenance
+##############################################################
+## MAINTENANCE
